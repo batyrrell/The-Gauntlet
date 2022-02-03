@@ -27,7 +27,7 @@ public abstract class Player : MonoBehaviour
         realSpeed = Input.GetKey(KeyCode.LeftShift) ? hyperSpeed : speed;
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         if (isOnGround)
         {

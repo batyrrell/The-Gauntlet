@@ -23,7 +23,7 @@ public class FollowPlayer : MonoBehaviour
         offset = new Vector3(playerTransform.position.x, playerTransform.position.y + yOffset, playerTransform.position.z + zOffset);
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         //creates a rotation which rotates angle degrees around axis (at offset position)
         offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * turnSpeed, Vector3.up) * offset;
