@@ -24,7 +24,7 @@ public class MenuUIManager : MonoBehaviour
     public void StartNew()
     {
         Debug.Log("Game Started");
-        //SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1);
     }
 
     public void Exit()
