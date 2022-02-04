@@ -10,7 +10,6 @@ public abstract class Player : MonoBehaviour
     float realSpeed;
     protected float hyperSpeed;
     protected float reverseSpeed;
-    protected float turnSpeed = 100;
     bool isOnGround = true;
 
     void Start()
@@ -19,7 +18,7 @@ public abstract class Player : MonoBehaviour
     }
    
 
-    protected void Move(float speed)
+    protected void Move(float speed, float turnSpeed)
     {
         hyperSpeed = 1.5f * speed;
         reverseSpeed = speed / 2;
