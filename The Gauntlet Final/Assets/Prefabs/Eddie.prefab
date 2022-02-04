@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 792809581961989311}
   - component: {fileID: 6446931236288794088}
   - component: {fileID: 5175135905698298606}
+  - component: {fileID: 3235970182114825993}
   m_Layer: 0
   m_Name: Eddie
   m_TagString: Untagged
@@ -143,3 +144,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.52038705, y: 1.6118171, z: 0.75771236}
   m_Center: {x: 0.005117595, y: -0.13916826, z: 0.0013376474}
+--- !u!114 &3235970182114825993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064721891610544676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e6a31053b005bf42a0b70f01fdb125d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
