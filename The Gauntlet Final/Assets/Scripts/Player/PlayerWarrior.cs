@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerWarrior : Player
 {
-    protected override void SetSpeed()
+    float speed = 10;
+    float jumpForce = 250;
+    void LateUpdate()
     {
-        hyperSpeed = 20;
-        speed = 10;
-        reverseSpeed = 5f;
-        jumpForce = 250;
+        Move(speed);
+        Jump(jumpForce);
     }
 }

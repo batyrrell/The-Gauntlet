@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerPaladin : Player
 {
-    protected override void SetSpeed()
+    float speed = 20;
+    float jumpForce = 350;
+    void LateUpdate()
     {
-        hyperSpeed = 30;
-        speed = 15;
-        reverseSpeed = 10;
-        jumpForce = 350;
+        Move(speed);
+        Jump(jumpForce);
     }
 }

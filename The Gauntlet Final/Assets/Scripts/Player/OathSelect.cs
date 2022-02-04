@@ -6,28 +6,26 @@ using TMPro;
 public class OathSelect : MonoBehaviour
 {
     public TextMeshProUGUI dropdown;
-    private static string oath;
+    public TextMeshProUGUI title;
+    string oath;
+    public static int oathNumber;
 
     public void SelectOath(int val)
     {
-        if(val == 1)
+        oathNumber = val;
+        if(val == 2)
         {
             oath = "Flagellant";
         }
-        if(val == 2)
+        if(val == 1)
         {
             oath = "Warrior";
         }
-        if(val == 3)
+        if(val == 0)
         {
             oath = "Paladin";
         }
 
-        if (val == 0)
-        {
-            Debug.Log("That is not a valid choice");
-        }
-        else
-        { Debug.Log($"{oath}  has been chosen"); }
+        title.text = $"{oath}";
     }
 }
