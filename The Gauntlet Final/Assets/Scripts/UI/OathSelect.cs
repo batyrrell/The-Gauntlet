@@ -12,7 +12,7 @@ public class OathSelect : MonoBehaviour
 
     public void SelectOath(int val)
     {
-        oathNumber = val;
+        PlayerPrefs.SetInt("Difficulty", val);
         if(val == 2)
         {
             oath = "Flagellant";

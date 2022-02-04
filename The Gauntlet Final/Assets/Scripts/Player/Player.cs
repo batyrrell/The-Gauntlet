@@ -21,7 +21,7 @@ public abstract class Player : MonoBehaviour
 
     protected void Move(float speed)
     {
-        hyperSpeed = 2 * speed;
+        hyperSpeed = 1.5f * speed;
         reverseSpeed = speed / 2;
         realSpeed = Input.GetKey(KeyCode.LeftShift) ? hyperSpeed : speed;
         float h_Input = Input.GetAxis("Horizontal");
