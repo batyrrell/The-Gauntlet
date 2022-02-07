@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 6482136022110452916}
   - component: {fileID: 2424640030361626116}
   - component: {fileID: 2639753306260066764}
+  - component: {fileID: -2141360942113021983}
   m_Layer: 0
   m_Name: Wollomp
   m_TagString: Untagged
@@ -143,3 +144,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9962792, y: 2.493777, z: 2.5062113}
   m_Center: {x: 0.0012514591, y: -0.40651068, z: 0.005293131}
+--- !u!114 &-2141360942113021983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7181657041261370408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42636c5ac165cac4195774a0f3634235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

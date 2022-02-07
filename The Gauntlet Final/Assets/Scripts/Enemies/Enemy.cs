@@ -1,25 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
+[DefaultExecutionOrder(1000)]
 public abstract class Enemy : MonoBehaviour
 {
+    public Transform[] points;
+    private int destPoint = 0;
+    protected NavMeshAgent agent;
+
     int creatureHealth;
     public GameObject[] creature { get; }
-    GameObject player;
+    public GameObject player { get; set; }
+    //Rigidbody enemyRB;
     Vector3 playerPos;
     Vector3 playerDistance;
-    Vector3 playerChase;
-    Vector3 loop;
     int playerType;
     float s;
     float tS;
-    float room;
+
+    protected bool onLoop = false;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         playerType = PlayerPrefs.GetInt("Difficulty");
+        //enemyRB = GetComponent<Rigidbody>();
     }
 
     public void Spawn(int creatureType, Vector3 creaturePos, Vector3 creatureOrientation)
@@ -29,7 +35,33 @@ public abstract class Enemy : MonoBehaviour
     protected void SetHealth(int health, string tag)
     {
         creatureHealth = health;
-        Debug.Log($"A {tag} has {creatureHealth} health.");
+        Debug.Log($"A(n) {tag} has {creatureHealth} health.");
+    }
+
+    protected void FindPlayer()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+    protected void GotoNextPoint()
+    {
+        // Returns if no points have been set up
+        if (points.Length == 0)
+            return;
+
+        // Set the agent to go to the currently selected destination.
+        agent.destination = points[destPoint].position;
+
+        // Choose the next point in the array as the destination,
+        // cycling to the start if necessary.
+        destPoint = (destPoint + 1) % points.Length;
+    }
+
+    void Update()
+    {
+        // Choose the next destination point when the agent gets
+        // close to the current one.
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+            GotoNextPoint();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -51,29 +83,29 @@ public abstract class Enemy : MonoBehaviour
         tS = turnSpeed;
     }
 
-    protected void Patrol(float roomSize, Vector3 loopStart)
+    protected bool inRange(float range)
     {
-        room = roomSize;
-        loop = loopStart;
+        if (playerDistance.x < range && playerDistance.x > -range)
+        {
+            if (playerDistance.y < range && playerDistance.y > -range)
+            {
+                if (playerDistance.z < range && playerDistance.z > -range)
+                {
+                    return true;
+                }
+                else { return false; }
+            }
+            else { return false; }
+        }
+        else { return false; }
     }
 
-    protected void ReturnToPatrol()
-    {
-        if (this.transform.position != loop)
-        { this.transform.Translate(loop.normalized); }
-    }
 
-    protected void Chase(float xRange, float zRange)
+    protected void Chase()
     {
         playerPos = player.transform.position;
-        playerDistance = (playerPos - this.transform.position);
-        if (playerDistance.x < xRange && playerDistance.x > -xRange)
-        {
-            if(playerDistance.z < zRange && playerDistance.z > -zRange)
-            {
-                playerChase = playerDistance.normalized;
-                this.transform.Translate(playerChase * s);
-            }
-        }
+        playerDistance = playerPos - transform.position;
+        transform.Translate(playerDistance * s * Time.deltaTime);
+        transform.Rotate(Vector3.up * tS * Time.deltaTime);
     }
 }
