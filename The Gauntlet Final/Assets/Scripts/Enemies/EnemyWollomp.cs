@@ -33,9 +33,9 @@ public class EnemyWollomp : Enemy
        
     }
 
-    void Update()
+    /*void Update()
     {
         currentState = currentState.Process();
         currentState.PrintDebug();
-    }
+    }*/
 }

@@ -29,12 +29,12 @@ public class EnemyEddie : Enemy
         agent = GetComponent<NavMeshAgent>();
         SetHealth(health, creatureType);
         MoveSet(_walkSpeed, _runSpeed, _turnSpeed);
-        currentState = new Idle(this.gameObject, agent, playerTransform);
+        //currentState = new Idle(this.gameObject, agent, playerTransform);
     }
 
-    void Update()
+    /*void Update()
     {
         currentState = currentState.Process();
         currentState.PrintDebug();
-    }
+    }*/
 }

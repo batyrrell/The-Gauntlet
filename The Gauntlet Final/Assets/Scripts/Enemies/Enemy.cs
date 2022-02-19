@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[DefaultExecutionOrder(1000)]
-public abstract class Enemy : MonoBehaviour
+using BehaviorTree;
+public abstract class Enemy : BTree
 {
 
     
@@ -46,5 +46,12 @@ public abstract class Enemy : MonoBehaviour
         walkSpeed = _walkSpeed;
         runSpeed = _runSpeed;
         turnSpeed = _turnSpeed;
+    }
+
+    protected override Node SetupTree()
+    {
+        GameObject npc = this.gameObject;
+        Node root = new TaskPatrol(agent, npc);
+        return root;
     }
 }
