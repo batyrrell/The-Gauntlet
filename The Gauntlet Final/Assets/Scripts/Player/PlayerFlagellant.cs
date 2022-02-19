@@ -13,7 +13,6 @@ public class PlayerFlagellant : Player
     {
         Move(_speed, _turnSpeed);
         Jump();
-        ConstrainPlayerPosition();
     }
 
     protected override void Jump()

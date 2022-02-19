@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+//INHERITANCE
 public class RunAway : State
 {
-
-    //INHERITANCE
-    GameObject target;
+    GameObject safeSpot;
+    
     public RunAway(GameObject _npc, NavMeshAgent _agent, Transform _player)
                 :base(_npc, _agent, _player)
     {
@@ -18,11 +18,11 @@ public class RunAway : State
 
     public override void Enter()
     {
-        
-        target = GameWorld.instance.safeSpot;
+
+        safeSpot = GameObject.FindGameObjectWithTag("Safespot");
         agent.speed = npc.GetComponent<Enemy>().runSpeed;
         agent.angularSpeed = npc.GetComponent<Enemy>().turnSpeed;
-        agent.SetDestination(target.transform.position);
+        agent.SetDestination(safeSpot.transform.position);
         base.Enter();
     }
 

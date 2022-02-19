@@ -16,7 +16,6 @@ public class PlayerPaladin : Player
     {
         Move(_speed, _turnSpeed);
         Jump();
-        ConstrainPlayerPosition();
         doubleJump = true;
     }
 

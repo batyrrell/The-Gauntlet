@@ -15,8 +15,8 @@ public abstract class Player : MonoBehaviour
     protected float reverseSpeed;
     protected bool isOnGround = true;
 
-    float zBound = 30;
-    float xBound = 30;
+    float zBound = 40;
+    float xBound = 40;
 
     void Start()
     {
@@ -38,6 +38,7 @@ public abstract class Player : MonoBehaviour
             else if (v_Input < 0)
             { transform.Translate(Vector3.forward * Time.deltaTime * reverseSpeed * v_Input); }
             transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime * h_Input);
+            ConstrainPlayerPosition();
         }
     }
 
