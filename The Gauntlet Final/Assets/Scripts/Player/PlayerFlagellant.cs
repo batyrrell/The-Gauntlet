@@ -2,14 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//INHERITANCE
 public class PlayerFlagellant : Player
-{ 
-    float speed = 5;
-    float turnSpeed = 100;
+{
+    
+    float _speed = 5;
+    float _turnSpeed = 100;
     float jumpForce = 100;
     void LateUpdate()
     {
-        Move(speed, turnSpeed);
-        Jump(jumpForce);
+        Move(_speed, _turnSpeed);
+        Jump();
+        ConstrainPlayerPosition();
+    }
+
+    protected override void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isOnGround)
+            {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                isOnGround = false;
+            }
+        }
     }
 }

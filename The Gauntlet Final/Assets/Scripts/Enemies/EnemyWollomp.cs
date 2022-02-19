@@ -3,35 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+//INHERITANCE
+
 public class EnemyWollomp : Enemy
 {
+
+    
+    State currentState;
+
     int health = 200;
-    float speed = 5;
-    float turnSpeed = 50;
+    float _walkSpeed = 1;
+    float _runSpeed = 3;
+    float _turnSpeed = 50;
     string creatureType = "Wollomp";
-    float range = 20;
+    //Rigidbody enemyRB;
 
     void Start()
     {
-        SetHealth(health, creatureType);
-        MoveSet(speed, turnSpeed);
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            playerTransform = player.transform;
+        }
+        //enemyRB = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
-
-        // Disabling auto-braking allows for continuous movement
-        // between points (ie, the agent doesn't slow down as it
-        // approaches a destination point).
-        agent.autoBraking = false;
-
-        GotoNextPoint();
+        SetHealth(health, creatureType);
+        MoveSet(_walkSpeed, _runSpeed, _turnSpeed);
+        currentState = new Idle(this.gameObject, agent, playerTransform);
+       
     }
 
-    private void Update()
+    void Update()
     {
-        FindPlayer();
-        if (inRange(range))
-        { Chase(); }
-        else if (!agent.pathPending && agent.remainingDistance < 0.5f) // Choose the next destination point when the agent gets
-                                                                       // close to the current one.
-        { GotoNextPoint(); }
+        currentState = currentState.Process();
+        currentState.PrintDebug();
     }
 }

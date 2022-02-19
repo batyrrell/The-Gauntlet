@@ -2,22 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public abstract class Player : MonoBehaviour
 {
-    Rigidbody rb;
+
+    
+    protected Rigidbody rb;
 
     //movement values
-    float realSpeed;
+    protected float realSpeed;
     protected float hyperSpeed;
     protected float reverseSpeed;
-    bool isOnGround = true;
+    protected bool isOnGround = true;
+
+    float zBound = 30;
+    float xBound = 30;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
-   
 
+    
     protected void Move(float speed, float turnSpeed)
     {
         hyperSpeed = 1.5f * speed;
@@ -35,23 +41,34 @@ public abstract class Player : MonoBehaviour
         }
     }
 
-    protected void Jump(float jumpForce)
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            if(isOnGround)
-            {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                isOnGround = false;
-            }
-        }
-    }
+    //ABSTRACTION
+    protected abstract void Jump();
 
     void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
+        }
+    }
+
+    protected  void ConstrainPlayerPosition()
+    {
+        if (transform.position.z < -zBound)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -zBound);
+        }
+        if (transform.position.z > zBound)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zBound);
+        }
+        if (transform.position.x < -xBound)
+        {
+            transform.position = new Vector3(-xBound, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x > xBound)
+        {
+            transform.position = new Vector3(xBound, transform.position.y, transform.position.z);
         }
     }
 }

@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 2424640030361626116}
   - component: {fileID: 2639753306260066764}
   - component: {fileID: -2141360942113021983}
+  - component: {fileID: 6471518726739219997}
   m_Layer: 0
   m_Name: Wollomp
   m_TagString: Untagged
@@ -142,8 +143,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9962792, y: 2.493777, z: 2.5062113}
-  m_Center: {x: 0.0012514591, y: -0.40651068, z: 0.005293131}
+  m_Size: {x: 1.9962792, y: 2.503366, z: 2.5062113}
+  m_Center: {x: 0.0012514591, y: -0.41130546, z: 0.005293131}
 --- !u!114 &-2141360942113021983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,3 +157,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42636c5ac165cac4195774a0f3634235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!195 &6471518726739219997
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7181657041261370408}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1.6
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2.5
+  m_BaseOffset: 1.68
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

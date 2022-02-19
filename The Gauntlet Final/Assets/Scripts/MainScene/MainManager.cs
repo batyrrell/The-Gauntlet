@@ -5,7 +5,9 @@ using UnityEngine;
 public class MainManager : MonoBehaviour
 {
     public GameObject[] player;
-    Vector3 playerPos = new Vector3(0, 1, 0);
+    public GameObject[] enemyType;
+    Vector3 playerPos = new Vector3(15, 2, 20);
+    Vector3 enemyPos = new Vector3(50, 0, 0);
     int difficulty;
     string oath;
 
@@ -25,7 +27,8 @@ public class MainManager : MonoBehaviour
             oath = "Paladin";
         }
         Debug.Log($"{oath} has been chosen.");
-        Instantiate(player[difficulty], playerPos, Quaternion.Euler(new Vector3(0, 45, 0)));
+        Instantiate(player[difficulty], playerPos, Quaternion.identity);
+        Instantiate(enemyType[difficulty], enemyPos, Quaternion.identity);
     }
     void Start()
     {
