@@ -7,7 +7,7 @@ using BehaviorTree;
 public abstract class Enemy : BTree
 {
 
-    
+    public static float playerRange = 6f;
     int creatureHealth;
 
     //ENCAPSULATION
@@ -51,7 +51,17 @@ public abstract class Enemy : BTree
     protected override Node SetupTree()
     {
         GameObject npc = this.gameObject;
-        Node root = new TaskPatrol(agent, npc);
+
+        Node root = new Selector(new List<Node>
+        {
+            new Sequence(new List<Node>
+            {
+                new PlayerInRange(transform),
+                new TaskChase(transform, agent),
+            }),
+            new TaskPatrol(agent, npc),
+        });
+
         return root;
     }
 }

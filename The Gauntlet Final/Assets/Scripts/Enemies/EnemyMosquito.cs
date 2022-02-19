@@ -17,7 +17,7 @@ public class EnemyMosquito : Enemy
     string creatureType = "Mosquito";
     //Rigidbody enemyRB;
 
-    void Start()
+    void Awake()
     {
         
         if (player == null)
@@ -29,13 +29,13 @@ public class EnemyMosquito : Enemy
         agent = GetComponent<NavMeshAgent>();
         SetHealth(health, creatureType);
         MoveSet(_walkSpeed, _runSpeed, _turnSpeed);
-        currentState = new Idle(this.gameObject, agent, playerTransform);
+        //currentState = new Idle(this.gameObject, agent, playerTransform);
         
     }
 
-    void Update()
+    /*void //Update()
     {
         currentState = currentState.Process();
         currentState.PrintDebug();
-    }
+    }*/
 }

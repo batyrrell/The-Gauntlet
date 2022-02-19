@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
 using BehaviorTree;
+
 public class TaskPatrol : Node
 {
     NavMeshAgent _agent;
@@ -23,6 +23,7 @@ public class TaskPatrol : Node
 
     public override NodeState Evaluate()
     {
+        Debug.Log("Evaluating");
         if(_waiting)
         {
             _waitCounter += Time.deltaTime;
@@ -38,11 +39,29 @@ public class TaskPatrol : Node
                 float distance = Vector3.Distance(_npc.transform.position, thisWP.transform.position);
                 if (distance < lastDist)
                 {
-                    _currentIndex = i - 1;
+                    _currentIndex = i;
                     lastDist = distance;
+                    Debug.Log(i);
                 }
             }
+            if (_agent.remainingDistance < 1)
+            {
+                if (_currentIndex >= GameWorld.Singleton.CheckPoints.Count - 1)
+                {
+                    _currentIndex = 0;
+                    Debug.Log("Reset");
+                }
+                else
+                {
+                    _currentIndex++;
+                    Debug.Log("Destination: " + _currentIndex);
+                }
+
+                _agent.SetDestination(GameWorld.Singleton.CheckPoints[_currentIndex].transform.position);
+                Debug.Log("Patrolling");
+            }
         }
+        
         state = NodeState.RUNNING;
         return state;
     }

@@ -17,7 +17,7 @@ public class EnemyEddie : Enemy
     string creatureType = "Eddie";
     //Rigidbody enemyRB;
    
-    void Start()
+    void Awake()
     {
         
         if (player == null)

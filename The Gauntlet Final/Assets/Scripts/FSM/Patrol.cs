@@ -52,6 +52,7 @@ public class Patrol : State
         }
         else if (agent.remainingDistance<1)
         {
+            
             if (currentIndex >= GameWorld.Singleton.CheckPoints.Count - 1)
                 currentIndex = 0;
             else
