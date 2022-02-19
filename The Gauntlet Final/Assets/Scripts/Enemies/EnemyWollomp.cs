@@ -12,8 +12,8 @@ public class EnemyWollomp : Enemy
     State currentState;
 
     int health = 200;
-    float _walkSpeed = 1;
-    float _runSpeed = 3;
+    float _walkSpeed = 3;
+    float _runSpeed = 5;
     float _turnSpeed = 50;
     string creatureType = "Wollomp";
     //Rigidbody enemyRB;

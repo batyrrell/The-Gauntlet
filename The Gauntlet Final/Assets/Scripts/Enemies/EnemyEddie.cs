@@ -11,8 +11,8 @@ public class EnemyEddie : Enemy
     State currentState;
 
     int health = 100;
-    float _walkSpeed = 3;
-    float _runSpeed = 5;    
+    float _walkSpeed = 5;
+    float _runSpeed = 7;    
     float _turnSpeed = 150;
     string creatureType = "Eddie";
     //Rigidbody enemyRB;

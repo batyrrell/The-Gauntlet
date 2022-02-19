@@ -11,8 +11,8 @@ public class EnemyMosquito : Enemy
     State currentState;
 
     int health = 25;
-    float _walkSpeed = 4;
-    float _runSpeed = 6;
+    float _walkSpeed = 7;
+    float _runSpeed = 10;
     float _turnSpeed = 200;
     string creatureType = "Mosquito";
     //Rigidbody enemyRB;
