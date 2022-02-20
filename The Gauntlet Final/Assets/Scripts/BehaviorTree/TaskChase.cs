@@ -18,12 +18,12 @@ public class TaskChase : Node
 
     public override NodeState Evaluate()
     {
-        GameObject player = GetData("Player");
-        Transform playerTransform = player.transform;
+        GameObject player = GetData("Player") as GameObject;
+        Vector3 playerPosition = player.transform.position;
 
-        if(Vector3.Distance(_transform.position, playerTransform.position) > 0.01f)
+        if(Vector3.Distance(_transform.position, playerPosition) > 0.01f)
         {
-            _agent.SetDestination(playerTransform.position);
+            _agent.SetDestination(playerPosition);
         }
 
         state = NodeState.RUNNING;
